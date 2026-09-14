@@ -7,9 +7,7 @@ public class Main {
 
     static Scanner scanner = new Scanner(System.in);
 
-    static ArrayList<String> names = new ArrayList<>();
-    static ArrayList<Integer> quantities = new ArrayList<>();
-    static ArrayList<Double> prices = new ArrayList<>();
+    static ArrayList<Product> products = new ArrayList<>();
 
     public static void main(String[] args) {
 
@@ -69,25 +67,27 @@ public class Main {
         System.out.print("Введите цену за штуку: ");
         double price = scanner.nextDouble();
 
-        names.add(name);
-        quantities.add(quantity);
-        prices.add(price);
+        Product product = new Product(name, quantity, price);
+
+        products.add(product);
     }
 
     public static void showProducts() {
 
         System.out.println("Список товаров:");
 
-        for (int i = 0; i < names.size(); i++) {
+        for (int i = 0; i < products.size(); i++) {
+
+            Product product = products.get(i);
 
             System.out.println(
                     (i + 1) + ". "
-                            + names.get(i)
+                            + product.getName()
                             + " — "
-                            + quantities.get(i)
+                            + product.getQuantity()
                             + " шт. по "
-                            + prices.get(i)
-                            + " руб."
+                            + product.getPrice()
+                            + " сом."
             );
         }
     }
@@ -96,9 +96,9 @@ public class Main {
 
         double total = 0;
 
-        for (int i = 0; i < names.size(); i++) {
+        for (Product product : products) {
 
-            total += quantities.get(i) * prices.get(i);
+            total += product.getQuantity() * product.getPrice();
         }
 
         return total;
