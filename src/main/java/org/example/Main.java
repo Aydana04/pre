@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.SwingUtilities;
 
 public class Main {
 
@@ -11,47 +12,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        while (true) {
-
-            printMenu();
-
-            int choice = scanner.nextInt();
-
-            switch (choice) {
-
-                case 1:
-                    addProduct();
-                    break;
-
-                case 2:
-                    showProducts();
-                    break;
-
-                case 3:
-                    System.out.println(
-                            "Общая стоимость товаров на складе: "
-                                    + calculateTotal()
-                                    + " сом."
-                    );
-                    break;
-
-                case 4:
-                    System.out.println("Программа завершена.");
-                    return;
-
-                default:
-                    System.out.println("Неверный пункт меню.");
-            }
-        }
-    }
-
-    public static void printMenu() {
-
-        System.out.println("=== Склад товаров ===");
-        System.out.println("1. Добавить товар");
-        System.out.println("2. Показать список");
-        System.out.println("3. Посчитать общую стоимость");
-        System.out.println("4. Выход");
+        SwingUtilities.invokeLater(() -> {
+            new MainFrame().setVisible(true);
+        });
     }
 
     public static void addProduct() {
